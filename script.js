@@ -163,7 +163,6 @@ function toggleListening() {
         recognition.onend = () => {
             isListening = false;  
             recognition = null;   
-            statusDisplay.innerText = "Stopped listening.";
         };
 
         recognition.start();
