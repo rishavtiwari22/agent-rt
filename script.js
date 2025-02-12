@@ -152,6 +152,15 @@ function toggleListening() {
         recognition.onresult = (event) => {
             let spokenCommand = event.results[0][0].transcript.toLowerCase();
             console.log("spokenCommand:", spokenCommand);
+            let strArr = spokenCommand.split(' ');
+            if (strArr.length > 2){
+                console.log('strArr.length : ',strArr.length);
+                spokenCommand = strArr[0] + ' ';
+                for (let i = 1; i < strArr.length; i++){
+                    spokenCommand += strArr[i];
+                }
+                console.log('spokenCommand : ',spokenCommand);
+            }
             statusDisplay.innerText = `You said: "${spokenCommand}"`;
             handleCommand(spokenCommand);
         };
