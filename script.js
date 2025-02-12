@@ -1,5 +1,5 @@
 const builtInCommands = [
-    { command: "open agent", url: "https://agent-rt.vercel.app/" },
+    { command: "open deepseek", url: "https://chat.deepseek.com/" },
     { command: "open google", url: "https://www.google.com" },
     { command: "open youtube", url: "https://www.youtube.com" },
     { command: "open chatgpt", url: "https://chat.openai.com" },
