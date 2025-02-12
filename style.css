@@ -41,7 +41,7 @@ header {
 }
 
 button {
-  background: #1891c4;
+  background: #4285F4;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -52,7 +52,7 @@ button {
 }
 
 button:hover {
-  background: #1891c4;
+  background: rgb(63, 63, 194)
 }
 
 input[type="text"] {
