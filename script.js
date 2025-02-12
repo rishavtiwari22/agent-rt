@@ -1,4 +1,5 @@
 const builtInCommands = [
+    { command: "open agent", url: "https://agent-rt.vercel.app/" },
     { command: "open google", url: "https://www.google.com" },
     { command: "open youtube", url: "https://www.youtube.com" },
     { command: "open chatgpt", url: "https://chat.openai.com" },
@@ -53,6 +54,7 @@ const builtInCommands = [
     { command: "open cleartrip", url: "https://www.cleartrip.com/" },
     { command: "open irctc", url: "https://www.irctc.co.in/nget/train-search" },
 ];
+
 
 
 const STORAGE_KEY = "customCommands";
