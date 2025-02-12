@@ -36,25 +36,6 @@ function saveCustomCommands(commands) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(commands));
 }
 
-//   function updateCustomCommandsList() {
-//     const listContainer = document.getElementById("customCommandsList");
-//     listContainer.innerHTML = "";
-//     const commands = getCustomCommands();
-//     if (commands.length === 0) {
-//       listContainer.innerHTML = "<p>No custom commands added.</p>";
-//       return;
-//     }
-//     commands.forEach((cmd, index) => {
-//       const parts = cmd.command.split(" ");
-//       const lastPart = parts[parts.length - 1];
-//       const div = document.createElement("div");
-//       div.className = "command-item";
-//       div.innerHTML = `<span><strong>${lastPart}</strong></span>
-//         <button onclick="removeCommand(${index})">Remove</button>`;
-//       listContainer.appendChild(div);
-//     });
-//   }
-
 function updateCustomCommandsList() {
     const listContainer = document.getElementById("customCommandsList");
     listContainer.innerHTML = "";
@@ -66,7 +47,6 @@ function updateCustomCommandsList() {
     commands.forEach((cmd, index) => {
         const parts = cmd.command.split(" ");
 
-        // Leave the first part out and join the rest
         const remainingParts = parts.slice(1).join(" ");
 
         const div = document.createElement("div");
