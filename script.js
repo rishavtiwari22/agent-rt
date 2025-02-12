@@ -174,9 +174,19 @@ function toggleListening() {
     }
 }
 
+
 function handleCommand(spokenCommand) {
-    const allCommands = getAllCommands();
-    for (const item of allCommands) {
+    const customCommands = getCustomCommands();
+    const builtInCommandsList = builtInCommands;
+
+    for (const item of customCommands) {
+        if (spokenCommand.includes(item.command)) {
+            window.open(item.url, "_blank");
+            return;
+        }
+    }
+
+    for (const item of builtInCommandsList) {
         if (spokenCommand.includes(item.command)) {
             window.open(item.url, "_blank");
             return;
@@ -187,8 +197,10 @@ function handleCommand(spokenCommand) {
         alert(`The current time is ${time}`);
         return;
     }
+
     alert("Command not recognized. Please try again.");
 }
+
 
 document.addEventListener("keydown", function (e) {
     if (e.key === "Enter" && document.activeElement.tagName !== "INPUT") {
