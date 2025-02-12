@@ -1,10 +1,12 @@
 const builtInCommands = [
     { command: "open google", url: "https://www.google.com" },
     { command: "open youtube", url: "https://www.youtube.com" },
-    { command: "open chat", url: "https://chat.openai.com" },
+    { command: "open chatgpt", url: "https://chat.openai.com" },
     { command: "open gmail", url: "https://mail.google.com/" },
     { command: "open linkedin", url: "https://www.linkedin.com/" },
     { command: "open github", url: "https://github.com/" },
+    { command: "open hotstar", url: "https://www.hotstar.com/in/sports" },
+    { command: "open vercel", url: "https://vercel.com/" },
     { command: "open sheet", url: "https://docs.google.com/spreadsheets/u/0/" },
     { command: "open docs", url: "https://docs.google.com/document/u/0/" },
     { command: "open calendar", url: "https://calendar.google.com/" },
@@ -14,6 +16,7 @@ const builtInCommands = [
     { command: "open weather", url: "https://www.weather.com/" },
     { command: "open wikipedia", url: "https://www.wikipedia.org/" },
 ];
+
 
 
 const STORAGE_KEY = "customCommands";
