@@ -1,60 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Voice-Controlled Agent</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header>
-      <h1>AI Voice-Controlled Agent</h1>
-      <p>To search for any page, speak 🗣️ "open Your-command".</p>
-    </header>
-    <div class="container">
-      <div class="left-panel">
-        <section class="voice-section">
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>AI Voice-Controlled Agent</title>
+      <link rel="icon" href="./image/voice.png" type="image/png">
+      <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+      <header>
+        <h1>AI Voice-Controlled Agent</h1>
+        <p>To search for any page, speak 🗣️ "open Your-command".</p>
+      </header>
+      <div class="container">
+        <div class="left-panel">
+          <section class="voice-section">
+            <div class="card">
+              <p id="status">
+                Press "Start/Stop Listening" or hit Enter to toggle.
+              </p>
+              <button onclick="toggleListening()">Start/Stop</button>
+            </div>
+          </section>
+          <section class="custom-command-section">
+            <div class="card">
+              <h2>Add Custom Command</h2>
+              <form id="addCommandForm">
+                <input
+                  type="text"
+                  id="commandInput"
+                  placeholder="Enter command keyword (e.g., 'open github')"
+                  required
+                />
+                <input
+                  type="text"
+                  id="urlInput"
+                  placeholder="Enter URL (e.g., 'https://github.com/rishavtiwari22')"
+                  required
+                />
+                <button type="submit">Add Command</button>
+              </form>
+            </div>
+          </section>
+          <section>
+              <footer class="left-footer">
+                  <p>© 2025 Rishav Tiwari</p>
+              </footer>
+          </section>
+        </div>
+        <div class="right-panel">
           <div class="card">
-            <p id="status">
-              Press "Start/Stop Listening" or hit Enter to toggle.
-            </p>
-            <button onclick="toggleListening()">Start/Stop</button>
+            <h2>Your Custom Commands</h2>
+            <div id="customCommandsList"></div>
+            <button id="btn" onclick="clearCustomCommands()">Clear All</button>
           </div>
-        </section>
-        <section class="custom-command-section">
-          <div class="card">
-            <h2>Add Custom Command</h2>
-            <form id="addCommandForm">
-              <input
-                type="text"
-                id="commandInput"
-                placeholder="Enter command keyword (e.g., 'open github')"
-                required
-              />
-              <input
-                type="text"
-                id="urlInput"
-                placeholder="Enter URL (e.g., 'https://github.com/rishavtiwari22')"
-                required
-              />
-              <button type="submit">Add Command</button>
-            </form>
-          </div>
-        </section>
-        <section>
-            <footer class="left-footer">
-                <p>© 2025 Rishav Tiwari</p>
-            </footer>
-        </section>
-      </div>
-      <div class="right-panel">
-        <div class="card">
-          <h2>Your Custom Commands</h2>
-          <div id="customCommandsList"></div>
-          <button id="btn" onclick="clearCustomCommands()">Clear All</button>
         </div>
       </div>
-    </div>
-    <script src="script.js"></script>
-  </body>
-</html>
+      <script src="script.js"></script>
+    </body>
+  </html>
