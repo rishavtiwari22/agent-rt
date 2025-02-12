@@ -134,6 +134,8 @@ function getAllCommands() {
     return [...builtInCommands, ...getCustomCommands()];
 }
 
+
+
 function toggleListening() {
     const statusDisplay = document.getElementById("status");
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -141,31 +143,29 @@ function toggleListening() {
         statusDisplay.innerText = "Your browser does not support Speech Recognition.";
         return;
     }
+
     if (!isListening) {
         recognition = new SpeechRecognition();
         recognition.lang = "en-US";
         recognition.continuous = false;
+
         recognition.onresult = (event) => {
             let spokenCommand = event.results[0][0].transcript.toLowerCase();
-            console.log('spokenCommand : ',spokenCommand);
-            let strArr = spokenCommand.split(' ');
-            if (strArr.length > 2){
-                console.log('strArr.length : ',strArr.length);
-                spokenCommand = strArr[0] + ' ';
-                for (let i = 1; i < strArr.length; i++){
-                    spokenCommand += strArr[i];
-                }
-                console.log('spokenCommand : ',spokenCommand);
-            }
+            console.log("spokenCommand:", spokenCommand);
             statusDisplay.innerText = `You said: "${spokenCommand}"`;
             handleCommand(spokenCommand);
         };
+
         recognition.onerror = (event) => {
             statusDisplay.innerText = `Error: ${event.error}`;
         };
+
         recognition.onend = () => {
-            isListening = false;
+            isListening = false;  
+            recognition = null;   
+            statusDisplay.innerText = "Stopped listening.";
         };
+
         recognition.start();
         isListening = true;
         statusDisplay.innerText = "Listening for commands...";
