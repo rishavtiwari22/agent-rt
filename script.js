@@ -15,8 +15,44 @@ const builtInCommands = [
     { command: "open amazon", url: "https://www.amazon.com/" },
     { command: "open weather", url: "https://www.weather.com/" },
     { command: "open wikipedia", url: "https://www.wikipedia.org/" },
+    { command: "open facebook", url: "https://www.facebook.com" },
+    { command: "open instagram", url: "https://www.instagram.com" },
+    { command: "open twitter", url: "https://twitter.com" },
+    { command: "open netflix", url: "https://www.netflix.com/" },
+    { command: "open reddit", url: "https://www.reddit.com" },
+    { command: "open zoom", url: "https://zoom.us/" },
+    { command: "open spotify", url: "https://www.spotify.com/" },
+    { command: "open whatsapp", url: "https://web.whatsapp.com/" },
+    { command: "open slack", url: "https://slack.com/" },
+    { command: "open trello", url: "https://trello.com/" },
+    { command: "open notion", url: "https://www.notion.so/" },
+    { command: "open discord", url: "https://discord.com/" },
+    { command: "open pinterest", url: "https://www.pinterest.com/" },
+    { command: "open medium", url: "https://medium.com/" },
+    { command: "open quora", url: "https://www.quora.com/" },
+    { command: "open microsoft", url: "https://www.microsoft.com/" },
+    { command: "open apple", url: "https://www.apple.com/" },
+    { command: "open adobe", url: "https://www.adobe.com/" },
+    { command: "open bing", url: "https://www.bing.com/" },
+    { command: "open yelp", url: "https://www.yelp.com/" },
+    { command: "open dropbox", url: "https://www.dropbox.com/" },
+    { command: "open airbnb", url: "https://www.airbnb.com/" },
+    { command: "open coursera", url: "https://www.coursera.org/" },
+    { command: "open udemy", url: "https://www.udemy.com/" },
+    { command: "open ebay", url: "https://www.ebay.com/" },
+    { command: "open flipkart", url: "https://www.flipkart.com/" },
+    { command: "open booking", url: "https://www.booking.com/" },
+    { command: "open canva", url: "https://www.canva.com/" },
+    { command: "open makemytrip", url: "https://www.makemytrip.com/" },
+    { command: "open expedia", url: "https://www.expedia.com/" },
+    { command: "open kayak", url: "https://www.kayak.com/" },
+    { command: "open tripadvisor", url: "https://www.tripadvisor.com/" },
+    { command: "open trivago", url: "https://www.trivago.com/" },
+    { command: "open skyscanner", url: "https://www.skyscanner.net/" },
+    { command: "open goibibo", url: "https://www.goibibo.com/" },
+    { command: "open cleartrip", url: "https://www.cleartrip.com/" },
+    { command: "open irctc", url: "https://www.irctc.co.in/nget/train-search" },
 ];
-
 
 
 const STORAGE_KEY = "customCommands";
@@ -39,28 +75,25 @@ function saveCustomCommands(commands) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(commands));
 }
 
+
 function updateCustomCommandsList() {
     const listContainer = document.getElementById("customCommandsList");
     listContainer.innerHTML = "";
     const commands = getCustomCommands();
     if (commands.length === 0) {
-        listContainer.innerHTML = "<p>No custom commands added.</p>";
-        return;
+      listContainer.innerHTML = "<p>No custom commands added.</p>";
+      return;
     }
     commands.forEach((cmd, index) => {
-        const parts = cmd.command.split(" ");
-
-        const remainingParts = parts.slice(1).join(" ");
-
-        const div = document.createElement("div");
-        div.className = "command-item";
-        console.log('remainingParts : ',remainingParts);
-        
-        div.innerHTML = `<span><strong>${remainingParts}</strong></span>
+      const parts = cmd.command.split(" ");
+      const lastPart = parts[parts.length - 1];
+      const div = document.createElement("div");
+      div.className = "command-item";
+      div.innerHTML = `<span><strong>${lastPart}</strong></span>
         <button onclick="removeCommand(${index})">Remove</button>`;
-        listContainer.appendChild(div);
+      listContainer.appendChild(div);
     });
-}
+  }
 
 
 function removeCommand(index) {
