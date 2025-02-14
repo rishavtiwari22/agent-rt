@@ -1,3 +1,4 @@
+
 const builtInCommands = [
     { command: "open deepseek", url: "https://chat.deepseek.com/" },
     { command: "open google", url: "https://www.google.com" },
@@ -54,7 +55,6 @@ const builtInCommands = [
     { command: "open cleartrip", url: "https://www.cleartrip.com/" },
     { command: "open irctc", url: "https://www.irctc.co.in/nget/train-search" },
 ];
-
 
 
 const STORAGE_KEY = "customCommands";
@@ -149,22 +149,32 @@ function toggleListening() {
         recognition.lang = "en-US";
         recognition.continuous = false;
 
-        recognition.onresult = (event) => {
+        recognition.onresult = async (event) => {
             let spokenCommand = event.results[0][0].transcript.toLowerCase();
             console.log("spokenCommand:", spokenCommand);
             let strArr = spokenCommand.split(' ');
-            if (strArr.length > 2){
-                console.log('strArr.length : ',strArr.length);
-                spokenCommand = strArr[0] + ' ';
-                for (let i = 1; i < strArr.length; i++){
-                    spokenCommand += strArr[i];
+            console.log('strArr : ',strArr);
+            if (strArr[0] == 'open') {
+                if (strArr.length > 2){
+                    console.log('strArr.length : ',strArr.length);
+                    spokenCommand = strArr[0] + ' ';
+                    for (let i = 1; i < strArr.length; i++){
+                        spokenCommand += strArr[i];
+                    }
+                    console.log('spokenCommand : ',spokenCommand);
                 }
-                console.log('spokenCommand : ',spokenCommand);
+                statusDisplay.innerText = `You said: "${spokenCommand}"`;
+                handleCommand(spokenCommand);
+            }else {
+                let command = await handleVoiceCommand(spokenCommand);
+                window.open(command, "_blank");
             }
-            statusDisplay.innerText = `You said: "${spokenCommand}"`;
-            handleCommand(spokenCommand);
         };
 
+        recognition.onstart = () => {
+            statusDisplay.innerText = "Speech recognition has started.";
+        };
+        
         recognition.onerror = (event) => {
             statusDisplay.innerText = `Error: ${event.error}`;
         };
@@ -183,6 +193,7 @@ function toggleListening() {
         statusDisplay.innerText = "Stopped listening.";
     }
 }
+
 
 
 function handleCommand(spokenCommand) {
@@ -217,3 +228,45 @@ document.addEventListener("keydown", function (e) {
         toggleListening();
     }
 });
+
+
+
+
+// ==================================================================================================
+
+
+async function handleVoiceCommand(userCommand) {
+  if (userCommand.toLowerCase().startsWith("play")) {
+    const songName = userCommand.replace("play", "").trim();
+    const YOUTUBE_SEARCH_ENDPOINT = "https://www.googleapis.com/youtube/v3/search";
+
+    try {
+      const response = await fetch(`${YOUTUBE_SEARCH_ENDPOINT}?part=snippet&q=${encodeURIComponent(songName)}&type=video&key=${YOUTUBE_API_KEY}&maxResults=1`);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data.items && data.items.length > 0) {
+        const videoId = data.items[0].id.videoId;
+        const youtubeLink = `https://www.youtube.com/watch?v=${videoId}`;
+        console.log(youtubeLink);
+        return youtubeLink;
+      } else {
+        console.log("No video found");
+        return "";
+      }
+    } catch (error) {
+      console.error("Error fetching YouTube video:", error);
+      return "";
+    }
+  } else {
+    console.log("Unsupported command");
+    return "";
+  }
+}
+
+// const userQuery = "Play bhojapuri pawan sing song";
+// handleVoiceCommand(userQuery);
